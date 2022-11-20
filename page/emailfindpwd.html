@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>找回密码</title>
+</head>
+<body>
+<input type="password" class="one_newpwd"> <br />
+<input type="password" class="tow_newpwd">
+<span class="err">
+
+</span>
+<button class="but">修改</button>
+
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script>
+    let url = window.location.href
+    let regexp = /[0-9]+@qq.com/
+    url = regexp.exec(url)[0]
+    $(".but").click(() => {
+      let onepassword = $('.one_newpwd')[0].value
+      let towpassword = $('.tow_newpwd')[0].value
+      $(".err")[0].innerText = ''
+      if(onepassword == "") {
+          $(".err")[0].innerText = "密码不能为空"
+          return
+      }
+      if(onepassword.length < 6) {
+          $(".err")[0].innerText = "密码长度大于六位数"
+          return
+      }
+      console.log(onepassword != towpassword)
+      if(onepassword != towpassword) {
+          $(".err")[0].innerText ="两次密码不相同"
+          return
+      }
+  })
+</script>
+</body>
+</html>
